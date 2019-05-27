@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window id="mainReportMonth" apply="com.dvd.ckp.report.ReportAllMonth">
+        <groupbox>
+            <caption label="${c:l('report.all.month')}" />
+            <vlayout>
+
+                <hbox class="control-report-fix-margin">
+                    <label hflex="3" />
+                    <div class="control-report" hflex="3">
+                        <label class="label-control-report"
+                               value="${c:l('year')}" />
+                        <datebox class="control-report-input"
+                                 id="dteFromDate" cols="12" format="yyyy"
+                                 sclass="datebox-year-only"
+                                 onCreate="self.value = new Date()" name="p_from_date" />
+                    </div>
+                    
+
+
+                    <label hflex="3" />
+                </hbox>
+                <div style="text-align:center">
+                    <button class="view-report" id="btnHtml"
+                            iconSclass="z-icon-html5" label="${c:l('report.action.view')}" />
+                    <button class="view-report" id="btnExcel"
+                            iconSclass="z-icon-file-excel-o"
+                            label="${c:l('report.action.excel')}" />
+                </div>
+            </vlayout>
+        </groupbox>
+        <space height="20px" />
+        <div style="border: 1px solid silver;">
+            <iframe id="ifrReportMonth" width="100%" height="800px"></iframe>
+        </div>
+    </window>
+</zk>

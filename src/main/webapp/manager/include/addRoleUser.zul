@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+    <window id="windowAddRoleInUser"
+            apply="com.dvd.ckp.controller.AddRoleInUserController"
+            position="center,center" closable="true"
+            action="show: slideDown;hide: slideUp" border="normal" width="70%"
+            height="60%" maximizable="false" title="${c:l('role.category')}"
+            onCancel="windowViewBillDetail.detach();"
+            contentStyle="overflow:auto">
+        <style src="/css/style.css" />
+
+        <groupbox>
+            <longbox id="lgbUserId" value="${arg.userSelectId}" visible="false"/>
+            <caption label="${c:l('role.category')}" />
+            <grid id="lstRoleNotOwnUser" mold="paging" pageSize="10" pagingPosition="both">
+                <auxhead sclass="category-center">
+                    <auxheader colspan="2">
+                        <a iconSclass="z-icon-filter"/>
+                        <textbox id="txtFilterRoleCode" hflex="1" placeholder="Mã vai trò"/>
+                    </auxheader>
+                    <auxheader colspan="3">
+                        <a iconSclass="z-icon-filter"/>
+                        <textbox id="txtFilterRoleName" hflex="1" placeholder="Tên vai trò"/>
+                    </auxheader>
+                </auxhead>
+                <columns style="text-align:center; ">
+                    <column hflex="1">${c:l('customer.index')}</column>
+                    <column hflex="3">${c:l('role.code')}</column>
+                    <column hflex="4">${c:l('role.name')}</column>
+                    <column hflex="5">${c:l('role.description')}</column>
+                    <column hflex="2">${c:l('customer.action')}</column>
+                </columns>
+                <template name="model">
+                    <row  value="${each}">
+                        <cell>
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell>
+                            <textbox value="${each.roleCode}" tooltiptext="${each.roleCode}" hflex="1" inplace="true" readonly="true"/>
+                        </cell>
+                        <cell>
+                            <textbox value="${each.roleName}" tooltiptext="${each.roleName}" hflex="1" inplace="true" readonly="true"/>
+                        </cell>
+                        <cell>
+                            <textbox value="${each.description}" tooltiptext="${each.description}" hflex="1" inplace="true" readonly="true"/>
+                        </cell>
+                        
+                        <cell style="text-align:center">
+                            <a class="btn-cursor" iconSclass="z-icon-plus-circle" forward="onClick=onAddRoleInUser" tooltiptext="${c:l('edit')}"/>
+                        </cell>
+                    </row>
+                </template>
+            </grid>
+        </groupbox>
+
+    </window>
+</zk>

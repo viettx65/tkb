@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <!--<zk xmlns:n="native">-->
+    <style>
+        .z-a{ color: green; cursor: auto; text-decoration: none;
+        margin-right: 5px; } .z-auxheader-content{ line-height: 14px;
+        text-align:right; } a [class^="z-icon-"]{ margin-right: 5px; }
+    </style>
+    <window id="quota" apply="com.dvd.ckp.controller.QuotaController">
+        <style src="/css/theme.css" />
+        <textbox id="hiddenFileName" value="" visible="false" />
+        <textbox id="hdFileName" value="" visible="false" />
+        <grid id="gridQuota" mold="paging" pageSize="10"
+              pagingPosition="both">
+
+            <auxhead sclass="category-center">
+                <auxheader colspan="6">
+                    <a class="btn-cursor" forward="onClick=onAdd" 
+                       iconSclass="z-icon-plus-circle" label="${c:l('add')}" />
+
+                    <button sclass="upload" id="uploadbtn" upload="true"
+                            iconSclass="z-icon-upload" label="${c:l('import')}" />
+
+                    <label class="btn-cursor dowload-file" style="margin-left: 0px !important" 
+                           id="linkFileName" value="" />
+                    
+                    <a id="btnSave" visible="false" class="btn-cursor" sclass="btn-cursor btn-save"
+                       forward="onClick=onSaveImport" iconSclass="z-icon-floppy-o"
+                       label="${c:l('save')}" />
+                    
+                    <a id="btnCancel" visible="false" class="btn-cursor" sclass="btn-cursor btn-save"
+                       forward="onClick=onCancelUpload" iconSclass="z-icon-ban"
+                       label="${c:l('cancel')}" />
+                    
+                    <label id="title" visible="false"/>
+                    <a class="btn-cursor dowload-file" visible="false" id="linkError" style="margin-left: 0px !important"
+                       forward="onClick=onExportError"
+                       label="${c:l('dowload.error.list')}" />
+                </auxheader>
+                <auxheader colspan="2">
+                    <checkbox sclass="show" id="show"
+                              label="${c:l('show')}" />
+                    <!--                    <a class="btn-cursor" sclass="btn-cursor btn-save"
+                    forward="onClick=onSaveImport" iconSclass="z-icon-floppy-o"
+                    label="${c:l('save')}" />-->
+                    <a class="btn-cursor dowload-file"
+                       forward="onClick=onDownloadFile"
+                       label="${c:l('dowload.template')}" />
+                </auxheader>
+
+            </auxhead>
+            <auxhead sclass="category-center">
+                <auxheader colspan="10">
+                    <a class="btn-cursor" iconSclass="z-icon-file-excel-o" 
+                       forward="onClick=onExport"
+                       tooltiptext="${c:l('export')}"/>
+                    <a iconSclass="z-icon-filter" />
+                    <combobox hflex="1" id="cbFilterName"
+                              placeholder="${c:l('staff.filter')}" autodrop="true"
+                              buttonVisible="false">
+                        <template name="model">
+                            <comboitem value="${each.staffCode}"
+                                       label="${each.staffName}" />
+                        </template>
+                    </combobox>
+                    <datebox hflex="1" class="control-report-input"
+                             id="year" cols="12" sclass="datebox-year-only" format="yyyy"
+                             name="p_from_date" />
+                </auxheader>
+            </auxhead>
+            <columns style="text-align:center; ">
+                <column hflex="1">${c:l('index')}</column>
+                <column hflex="2">${c:l('schedule.year')}</column>
+                <column hflex="2">
+                    ${c:l('schedule.quota.staff')}
+                </column>
+                <column hflex="2">${c:l('scheudle.quota')}</column>
+                <column hflex="2">
+                    ${c:l('schedule.quota.lecture')}
+                </column>
+                <column hflex="2">
+                    ${c:l('schedule.quota.otherWork')}
+                </column>
+                <column hflex="4">
+                    ${c:l('schedule.quota.description')}
+                </column>
+                <column hflex="2">${c:l('action')}</column>
+            </columns>
+            <template name="model">
+                <row value="${each}">
+                    <cell style="text-align: center;">
+                        <label value="${forEachStatus.index+1}" />
+                    </cell>
+                    <cell>
+                        <datebox value="${each.dteYear}"
+                                 sclass="datebox-year-only" format="yyyy"
+                                 style="text-align: center;" tooltiptext="${each.dteYear}"
+                                 hflex="1" inplace="true" readonly="true" />
+                    </cell>
+                    <cell>
+                        <combobox hflex="1" buttonVisible="false"
+                                  autodrop="true" inplace="true" readonly="true">
+                            <template name="model">
+                                <comboitem value="${each.staffCode}"
+                                           label="${each.staffName}" />
+                            </template>
+                        </combobox>
+                    </cell>
+                    <cell>
+                        <textbox value="${each.totalValue}"
+                                 style="text-align: right;" tooltiptext="${each.total}" hflex="1"
+                                 readonly="true" />
+                    </cell>
+                    <cell>
+                        <textbox value="${each.lectureValue}"
+                                 style="text-align: right;" tooltiptext="${each.lecture}"
+                                 hflex="1" inplace="true" readonly="true" />
+                    </cell>
+                    <cell>
+                        <textbox style="text-align: right;"
+                                 value="${each.otherWorkValue}" tooltiptext="${each.otherWork}"
+                                 hflex="1" inplace="true" readonly="true" />
+                    </cell>
+                    <cell>
+                        <textbox style="text-align: left" rows="3"
+                                 value="${each.description}" tooltiptext="${each.description}"
+                                 hflex="1" inplace="true" readonly="true" />
+                    </cell>
+
+                    <cell style="text-align:center">
+                        <a class="btn-cursor" iconSclass="z-icon-pencil"
+                           forward="onClick=onEdit" tooltiptext="${c:l('edit')}" />
+                        <a class="btn-cursor"
+                           iconSclass="z-icon-trash-o" forward="onClick=onDelete"
+                           tooltiptext="${c:l('delete')}" />
+                        <a class="btn-cursor" iconSclass="z-icon-check"
+                           forward="onClick=onSave" visible="false"
+                           tooltiptext="${c:l('save')}" />
+                        <a class="btn-cursor" iconSclass="z-icon-ban"
+                           forward="onClick=onCancel" visible="false"
+                           tooltiptext="${c:l('cancel')}" />
+
+                    </cell>
+                </row>
+            </template>
+        </grid>
+    </window>
+</zk>

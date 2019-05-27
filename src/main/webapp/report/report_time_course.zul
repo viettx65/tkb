@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window id="reportTimeCourse"
+            apply="com.dvd.ckp.report.ReportTimeCourse">
+        <groupbox>
+            <caption label="${c:l('schedule.report')}" />
+            <vlayout>
+
+                <hbox class="control-report-fix-margin">
+                    <label hflex="3" />
+                    <div class="control-report" hflex="3">
+                        <label class="label-control-report"
+                               value="${c:l('schedule.year')}" />
+                        <datebox class="control-report-input"
+                                 id="dteFromDate" cols="12"
+                                 sclass="datebox-year-only"
+                                 format="yyyy" onCreate="self.value = new Date()"
+                                 name="p_from_date" />
+                    </div>
+                    <!--                     <div class="control-report" hflex="3"> -->
+                    <!--                         <label class="label-control-report" -->
+                    <!--                                                        value="${c:l('report.param.todate')}" /> -->
+                    <!--                         <datebox class="control-report-input" -->
+                    <!--                                                          id="dteToDate" cols="12" format="dd/MM/yyyy" -->
+                    <!--                                                          onCreate="self.value = new Date()" name="p_to_date" /> -->
+                    <!--                     </div> -->
+                    <label hflex="3" />
+                </hbox>
+                <div style="text-align:center">
+                    <button class="view-report" id="btnHtml"
+                            iconSclass="z-icon-html5" label="${c:l('report.action.view')}" />
+                    <button class="view-report" id="btnExcel"
+                            iconSclass="z-icon-file-excel-o"
+                            label="${c:l('report.action.excel')}" />
+                    <button class="view-report" id="btnSendMail"
+                            forward="onClick=onSendMail"
+                            iconSclass="z-icon-envelope-o"
+                            label="${c:l('send.email')}"  visible="false"/>
+                </div>
+            </vlayout>
+        </groupbox>
+        <space height="20px" />
+        <div style="border: 1px solid silver;">
+            <iframe id="ifrReportMonth" width="100%" height="800px"></iframe>
+        </div>
+    </window>
+</zk>

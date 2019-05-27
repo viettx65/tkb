@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <!--<zk xmlns:n="native">-->
+    <window id="mainContract"
+            apply="com.dvd.ckp.controller.ObjectControlller">
+        <groupbox>
+            <caption label="${c:l('customer.category')}" />
+            <grid id="lstCustomer" mold="paging" pageSize="20"
+                  pagingPosition="bottom">
+                <auxhead sclass="category-center">
+                    <auxheader colspan="8">
+                        <a class="btn-cursor" id="add"
+                           iconSclass="z-icon-plus-circle" label="${c:l('add')}" />
+                        <!--                        <space width="10px" />
+                     <a class="btn-cursor" forward="onClick=onImport"
+                        iconSclass="z-icon-file-excel-o" label="${c:l('import')}" />
+                     <space width="10px" />
+                     <a class="btn-cursor" forward="onClick=onExport"
+                        iconSclass="z-icon-file-excel-o" label="${c:l('export')}" />-->
+                    </auxheader>
+                </auxhead>
+                <auxhead sclass="category-center">
+                    <auxheader colspan="8">
+                        <a iconSclass="z-icon-filter" />
+                        <combobox hflex="1" id="cbxObjectFilter"
+                                  autodrop="true" placeholder="Nhập tên chức năng để tìm kiếm"
+                                  buttonVisible="false">
+                            <template name="model">
+                                <comboitem value="${each.objectId}"
+                                           label="${each.objectName}" />
+                            </template>
+                        </combobox>
+                    </auxheader>
+                </auxhead>
+                <columns style="text-align:center;">
+                    <column hflex="1">${c:l('customer.index')}</column>
+                    <column hflex="2">${c:l('customer.code')}</column>
+                    <column hflex="6">${c:l('customer.name')}</column>
+                    <column hflex="2">${c:l('customer.phone')}</column>
+                    <column hflex="3">
+                        ${c:l('customer.taxcode')}
+                    </column>
+                    <column hflex="3">
+                        ${c:l('customer.address')}
+                    </column>
+                    <column hflex="3">
+                        ${c:l('customer.accountnumber')}
+                    </column>
+                    <column hflex="2">${c:l('customer.action')}</column>
+                </columns>
+                <template name="model">
+                    <row value="${each}">
+                        <cell>
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell>
+                            <textbox value="${each.objectCode}"
+                                     tooltiptext="${each.objectCode}" hflex="1" inplace="true"
+                                     readonly="true" />
+                        </cell>
+                        <cell>
+                            <textbox value="${each.objectName}"
+                                     tooltiptext="${each.objectName}" hflex="1" inplace="true"
+                                     readonly="true" />
+                        </cell>
+                        <cell>
+                            <!--Ngan hang-->
+                            <combobox  hflex="1"  
+                                       buttonVisible="false" inplace="true"  readonly="true">
+                                <template name="model">
+                                    <comboitem value="${each.paramValue}" label="${each.paramName}" />
+                                </template>
+                            </combobox>
+                        </cell>
+                        <cell>
+                            <textbox value="${each.path}"
+                                     tooltiptext="${each.path}" hflex="1" inplace="true"
+                                     readonly="true" />
+                        </cell>
+                        <cell>
+                            <textbox value="${each.parentId}"
+                                     tooltiptext="${each.parentId}" hflex="1" inplace="true"
+                                     readonly="true" />
+                        </cell>
+                        <cell>
+                            <textbox value="${each.icon}"
+                                     tooltiptext="${each.icon}" hflex="1" inplace="true"
+                                     readonly="true" />
+                        </cell>
+                        <cell style="text-align:center">
+                            <a class="btn-cursor"
+                               iconSclass="z-icon-pencil" forward="onClick=onEdit"
+                               tooltiptext="${c:l('edit')}" />
+                            <a class="btn-cursor"
+                               iconSclass="z-icon-trash-o" forward="onClick=onDelete"
+                               tooltiptext="${c:l('delete')}" />
+                            <a class="btn-cursor"
+                               iconSclass="z-icon-check" forward="onClick=onSave"
+                               visible="false" tooltiptext="${c:l('save')}" />
+                            <a class="btn-cursor"
+                               iconSclass="z-icon-ban" forward="onClick=onCancel"
+                               visible="false" tooltiptext="${c:l('cancel')}" />
+                        </cell>
+                    </row>
+                </template>
+            </grid>
+        </groupbox>
+    </window>
+</zk>

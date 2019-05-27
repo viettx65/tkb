@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+	<!--<zk xmlns:n="native">-->
+	<style>
+		.z-a{ color: green; cursor: auto; text-decoration: none;
+		margin-right: 5px; } .z-auxheader-content{ line-height: 14px;
+		text-align:right; } a [class^="z-icon-"]{ margin-right: 5px; }
+	</style>
+	<window id="staff" apply="com.dvd.ckp.controller.StaffController">
+		<style src="/css/theme.css" />
+		<style src="/css/style.css" />
+		<groupbox>
+			<caption label="${c:l('staff')}" />
+			<grid id="gridStaff" mold="paging" pageSize="10"
+				pagingPosition="both">
+				<auxhead sclass="category-center">
+					<auxheader colspan="10">
+						<a class="btn-cursor" forward="onClick=onAdd"
+							iconSclass="z-icon-plus-circle" label="${c:l('add')}" />
+
+						<!-- 						<button class="btn-cursor" id="uploadbtn" -->
+						<!-- 							iconSclass="z-icon-file-excel-o"  -->
+						<!-- 							label="${c:l('import')}" /> -->
+						<button class="btn-cursor" upload="true" style="width: 110px !important;border: none !important;color: green !important; font-weight: bold !important;font-size: 13px;"
+							iconSclass="z-icon-file-excel-o" id="uploadbtn"
+							label="${c:l('import')}" />
+
+					</auxheader>
+				</auxhead>
+				<auxhead sclass="category-center">
+					<auxheader colspan="10">
+						<a iconSclass="z-icon-filter" />
+						<combobox hflex="1" id="cbFilterName"
+							placeholder="${c:l('staff.filter')}" autodrop="true"
+							buttonVisible="false">
+							<template name="model">
+								<comboitem value="${each.staffId}"
+									label="${each.staffName}" />
+							</template>
+						</combobox>
+					</auxheader>
+				</auxhead>
+				<columns style="text-align:center; ">
+					<column hflex="1">${c:l('pump.index')}</column>
+					<column hflex="2">${c:l('staff.code')}</column>
+					<column hflex="4">${c:l('staff.name')}</column>
+					<column hflex="3">${c:l('staff.birthday')}</column>
+					<column hflex="2">${c:l('staff.phone')}</column>
+					<column hflex="4">${c:l('staff.email')}</column>
+					<column hflex="2">${c:l('staff.address')}</column>
+					<column hflex="2">
+						${c:l('param.key.position')}
+					</column>
+					<column hflex="2">
+						${c:l('param.key.department')}
+					</column>
+					<column hflex="2">${c:l('pump.action')}</column>
+				</columns>
+				<template name="model">
+					<row value="${each}">
+						<cell style="text-align: center;">
+							<label value="${forEachStatus.index+1}" />
+						</cell>
+						<cell>
+							<textbox value="${each.staffCode}"
+								tooltiptext="${each.staffCode}" hflex="1" inplace="true"
+								readonly="true" />
+						</cell>
+						<cell>
+							<textbox value="${each.staffName}"
+								tooltiptext="${each.staffName}" hflex="1" inplace="true"
+								readonly="true" />
+						</cell>
+						<cell>
+							<datebox value="${each.birthday}"
+								format="dd/MM/yyyy" style="text-align: right;" hflex="1"
+								inplace="true" buttonVisible="false" readonly="true" />
+						</cell>
+						<cell>
+							<textbox value="${each.phone}"
+								style="text-align: right;" tooltiptext="${each.phone}" hflex="1"
+								inplace="true" readonly="true" />
+						</cell>
+						<cell>
+							<textbox style="text-align: right;"
+								value="${each.email}" tooltiptext="${each.email}" hflex="1"
+								inplace="true" readonly="true" />
+						</cell>
+						<cell>
+							<textbox style="text-align: right;"
+								value="${each.address}" tooltiptext="${each.address}" hflex="1"
+								inplace="true" readonly="true" />
+						</cell>
+						<cell>
+							<combobox hflex="1" buttonVisible="false"
+								autodrop="true" inplace="true" readonly="true">
+								<template name="model">
+									<comboitem
+										value="${each.paramValue}" label="${each.paramName}" />
+								</template>
+							</combobox>
+						</cell>
+						<cell>
+							<combobox hflex="1" buttonVisible="false"
+								autodrop="true" inplace="true" readonly="true">
+								<template name="model">
+									<comboitem
+										value="${each.paramValue}" label="${each.paramName}" />
+								</template>
+							</combobox>
+						</cell>
+						<cell style="text-align:center">
+							<a class="btn-cursor"
+								iconSclass="z-icon-pencil" forward="onClick=onEdit"
+								tooltiptext="${c:l('edit')}" />
+							<a class="btn-cursor"
+								iconSclass="z-icon-trash-o" forward="onClick=onDelete"
+								tooltiptext="${c:l('delete')}" />
+							<a class="btn-cursor"
+								iconSclass="z-icon-check" forward="onClick=onSave"
+								visible="false" tooltiptext="${c:l('save')}" />
+							<a class="btn-cursor"
+								iconSclass="z-icon-ban" forward="onClick=onCancel"
+								visible="false" tooltiptext="${c:l('cancel')}" />
+
+						</cell>
+					</row>
+				</template>
+			</grid>
+		</groupbox>
+	</window>
+</zk>

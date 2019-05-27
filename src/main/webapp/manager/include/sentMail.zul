@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+    <window id="sentEmail" 
+            apply="com.dvd.ckp.controller.MailController"
+            position="center,center" closable="true"
+            action="show: slideDown;hide: slideUp" border="normal" width="50%"
+            height="90%" maximizable="false" title="${c:l('send.email')}"
+            onCancel="sentEmail.detach();"
+            contentStyle="overflow:auto">
+        <style src="/css/style.css" />
+        <hlayout spacing="10px">
+            <hbox hflex="1" />
+            <hbox hflex="6" style="text-align: right;">
+                <label hflex="1" value="${c:l('send.from')}" />
+                <textbox hflex="5" id="txtMailSend" value="${arg.email}"
+                         placeholder="${c:l('placeholder.from')}"
+                         onBlur="self.value=self.value.trim()" />
+            </hbox>
+            <hbox hflex="1" />
+                
+        </hlayout>
+        <hlayout spacing="10px">
+            <hbox hflex="1" />
+            <hbox hflex="6" style="text-align: right;">
+                <label hflex="1" value="${c:l('send.pass')}" />
+                <textbox hflex="5"  type="password" id="txtPass" 
+                         placeholder="${c:l('placeholder.pass')}"                         
+                         onBlur="self.value=self.value.trim()" />
+            </hbox>
+            <hbox hflex="1" />
+                
+        </hlayout>
+
+        <hlayout spacing="10px">                
+            <hbox hflex="1" />
+            <hbox hflex="6" style="text-align: right;">
+                <label hflex="1" value="${c:l('send.to')}" />
+                <textbox hflex="5" id="txtRecipient"  
+                         placeholder="${c:l('placeholder.to')}"
+                         onBlur="self.value=self.value.trim()" />
+            </hbox>
+            <hbox hflex="1" />
+        </hlayout>
+        <hlayout spacing="10px">                
+            <hbox hflex="1" />
+            <hbox hflex="6" style="text-align: right;">
+                <label hflex="1" value="${c:l('send.subject')}" />
+                <textbox hflex="5" id="txtSubject"
+                         placeholder="${c:l('placeholder.subject')}"
+                         onBlur="self.value=self.value.trim()" />
+            </hbox>
+            <hbox hflex="1" />
+        </hlayout>
+        <hlayout spacing="10px">                
+            <hbox hflex="1" />
+            <hbox hflex="6" style="text-align: right;">
+                <label hflex="1" value="${c:l('send.content')}" />
+                <textbox hflex="5" id="txtContent" rows="3"
+                         placeholder="${c:l('placeholder.content')}"
+                         onBlur="self.value=self.value.trim()" />
+            </hbox>
+            <hbox hflex="1" />
+        </hlayout>
+            
+        <hlayout spacing="10px">                
+            <hbox hflex="1" />
+            <hbox hflex="7" style="text-align: right;">
+                <hbox hflex="2">
+                    <a iconSclass="z-icon-paperclip"/>
+                    <label hflex="1" value="${c:l('send.attact')}" />
+                </hbox>
+                <hbox hflex="5">
+                    <a />
+                    <textbox hflex="5" visible="false"
+                             placeholder="${c:l('placeholder.content')}"
+                             onBlur="self.value=self.value.trim()" />
+                    <a  label="Baocaongay.xlsx"/>
+                </hbox>
+                
+            </hbox>
+            <hbox hflex="1" />
+        </hlayout>
+            
+        <hlayout spacing="10px">                
+            <hbox hflex="1" />
+            <hbox hflex="1" style="text-align: right;">                
+                <button hflex="1" id="btnSend" 
+                        forward="onClick=onSendMail"
+                        label="${c:l('send')}"
+                        iconSclass="z-icon-paper-plane-o"/>
+                <button hflex="1" id="btnCancel" 
+                        forward="onClick=onCancel"
+                        label="${c:l('cancel')}"
+                        iconSclass="z-icon-ban"/>
+            </hbox>
+            <hbox hflex="1" />
+        </hlayout>
+
+
+    </window>
+</zk>

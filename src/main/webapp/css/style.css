@@ -1,0 +1,103 @@
+
+
+/* .btn-upload { */
+/* 	width: 110px !important; */
+/* 	border: none !important; */
+/* 	color: green !important; */
+/* 	font-weight: bold !important; */
+/* } */
+.label-file-name {
+    color: red;
+    text-align: left;
+    width: 100%;
+    margin-left: 10%;
+}
+
+
+
+.textbox-total-errorr {
+    margin-left: 84px;
+    border: 1px solid silver !important;
+}
+
+.textbox-total-succes {
+    margin-left: 35px;
+    border: 1px solid silver !important;
+}
+
+.textbox-total {
+    margin-left: 100px;
+    border: 1px solid silver !important;
+}
+
+.totalRowSuccess {
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.totalRow {
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.totalRowError {
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.button-control {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.dowload-file-error {
+    border: none;
+    font-weight: bold;
+    color: blue;
+    background: none;
+}
+
+.combox-status .z-combobox-input {
+    text-align: center;
+}
+
+.btn-dowload {
+    border: none;
+    background: none;
+    color: blue;
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 20px;
+}
+
+.title-bill {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+.lb-title-bill-detail {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+.icon {
+    text-align: right;
+    width: 100%;
+    height: 100%;
+}
+
+.title-login {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+#divListFunction {
+    background-image: url(.../images/banner3.jpg) no-repeat 0 0;
+}
+

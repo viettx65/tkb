@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <!--<zk xmlns:n="native">-->
+    <style>
+        .z-a{
+        color: green;
+        cursor: auto;
+        text-decoration: none;
+        margin-right: 5px;
+        }
+        .z-auxheader-content{
+        line-height: 14px;
+        text-align:right;
+        }
+        a [class^="z-icon-"]{
+        margin-right: 5px;
+        }
+    </style>
+    <window  id="mainRole" apply="com.dvd.ckp.controller.RoleController">
+        <groupbox>
+            <caption label="${c:l('role.category')}" />
+            <grid id="lstRole" mold="paging" pageSize="10"
+                  pagingPosition="both">
+                <auxhead sclass="category-center">
+                    <auxheader colspan="5">
+                        <a id="add" class="btn-cursor" iconSclass="z-icon-plus-circle" label="${c:l('add')}" />
+                    </auxheader>
+                </auxhead>
+                <auxhead sclass="category-center">
+                    <auxheader colspan="2">
+                        <a iconSclass="z-icon-filter"/>
+                        <textbox id="txtFilterRoleCode" hflex="1" placeholder="Mã vai trò"/>
+                    </auxheader>
+                    <auxheader colspan="3">
+                        <a iconSclass="z-icon-filter"/>
+                        <textbox id="txtFilterRoleName" hflex="1" placeholder="Tên vai trò"/>
+                    </auxheader>
+                </auxhead>
+                <columns style="text-align:center; ">
+                    <column hflex="1">${c:l('customer.index')}</column>
+                    <column hflex="3">${c:l('role.code')}</column>
+                    <column hflex="4">${c:l('role.name')}</column>
+                    <column hflex="5">${c:l('role.description')}</column>
+                    <column hflex="2">${c:l('customer.action')}</column>
+                </columns>
+                <template name="model">
+                    <row  value="${each}">
+                        <cell>
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell>
+                            <textbox value="${each.roleCode}" tooltiptext="${each.roleCode}" hflex="1" inplace="true" readonly="true"/>
+                        </cell>
+                        <cell>
+                            <textbox value="${each.roleName}" tooltiptext="${each.roleName}" hflex="1" inplace="true" readonly="true"/>
+                        </cell>
+                        <cell>
+                            <textbox value="${each.description}" tooltiptext="${each.description}" hflex="1" inplace="true" readonly="true"/>
+                        </cell>
+                        
+                        <cell style="text-align:center">
+                            <a class="btn-cursor" iconSclass="z-icon-pencil" forward="onClick=onEdit" tooltiptext="${c:l('edit')}"/>
+                            <a class="btn-cursor" iconSclass="z-icon-trash-o" forward="onClick=onDelete" tooltiptext="${c:l('delete')}"/>
+                            <a class="btn-cursor" iconSclass="z-icon-check" forward="onClick=onSave" visible="false" tooltiptext="${c:l('save')}" />
+                            <a class="btn-cursor" iconSclass="z-icon-ban" forward="onClick=onCancel" visible="false" tooltiptext="${c:l('cancel')}"/>
+                            <a class="btn-cursor" iconSclass="z-icon-newspaper-o" forward="onClick=onViewObjectByRole" tooltiptext="${c:l('role.category')}" />
+                        </cell>
+                    </row>
+                </template>
+            </grid>
+        </groupbox>
+        <groupbox>
+            <caption label="${c:l('role.role.object')}" />
+            <!--grid Object-->
+            <grid id="lstObject" mold="paging" pageSize="10"
+                  pagingPosition="both">
+                <auxhead sclass="category-center">
+                    <auxheader colspan="4">
+                        <a id="addObject" class="btn-cursor" iconSclass="z-icon-plus-circle" label="${c:l('add')}" />
+                    </auxheader>
+                </auxhead>
+                <!--                <auxhead sclass="category-center">
+                    <auxheader colspan="1">
+                    </auxheader>
+                    <auxheader colspan="1">
+                        <a iconSclass="z-icon-filter"/>
+                        <textbox id="txtFilterObjectCode" hflex="1"/>
+                    </auxheader>
+                    <auxheader colspan="1">
+                        <a iconSclass="z-icon-filter"/>
+                        <textbox id="txtFilterObjectName" hflex="1"/>
+                    </auxheader>
+                </auxhead>-->
+                <columns style="text-align:center; ">
+                    <column hflex="1">${c:l('customer.index')}</column>
+                    <column hflex="3">${c:l('role.object.code')}</column>
+                    <column hflex="4">${c:l('role.object.name')}</column>
+                    <column hflex="2">${c:l('customer.action')}</column>
+                </columns>
+                <template name="model">
+                    <row  value="${each}">
+                        <cell>
+                            <label value="${forEachStatus.index+1}" />
+                        </cell>
+                        <cell>
+                            <textbox value="${each.objectCode}" tooltiptext="${each.objectCode}" hflex="1" inplace="true" readonly="true"/>
+                        </cell>
+                        <cell>
+                            <textbox value="${each.objectName}" tooltiptext="${each.objectName}" hflex="1" inplace="true" readonly="true"/>
+                        </cell>
+                       
+                        <cell style="text-align:center">
+                            <a class="btn-cursor" iconSclass="z-icon-trash-o" forward="onClick=onDeleteObject" tooltiptext="${c:l('delete')}"/>
+                        </cell>
+                    </row>
+                </template>
+            </grid>
+        </groupbox>
+    </window>  
+</zk>

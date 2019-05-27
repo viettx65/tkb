@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns:n="native">
+    <window id="uploadStaff"
+                apply="com.dvd.ckp.controller.StaffController"
+                position="center,center" closable="true" border="normal" width="50%"
+                height="50%" maximizable="false">
+        <style src="/css/style.css" />
+        <style src="/css/theme.css" />
+        <groupbox>
+            <caption label="${c:l('staff.upload')}" />
+            <label width="300px" style="color:red" id="msgErr" />
+            <textbox id="hiddenFileName" visible="false" /><!--bien an luu ten duong dan file da upload-->
+            <textbox id="hdFileName" visible="false" /><!--bien an luu ten file da upload-->
+            <div id="rowupload" class="upload">
+
+                <div class="label-file-name">
+                    <label style="color:black"
+                                               value="${c:l('pump.file.name')}" />
+                    (*)
+
+                    <a id="downloadFilePop" hflex="1">
+                        <label id="linkFileName" style="color:blue"
+                                                       hflex="1" />
+                    </a>
+                </div>
+
+                <button class="btn-upload" upload="true"
+                                        iconSclass="z-icon-paperclip" id="uploadbtn"
+                                        label="${c:l('upload')}" hflex="1" />
+
+            </div>
+            <div class="dowload-file">
+                <button class="btn-dowload"
+                                        forward="onClick=onDownloadFile" hflex="4"
+                                        label="${c:l('dowload.template')}" />
+
+            </div>
+            <div id="totalRow" class="totalRow">
+                <div>
+                    <div style="color:red; text-align:left">
+                        <label style="color:black"
+                                                       value="${c:l('pump.total')}" />
+                        <textbox class="textbox-total" id="txtTotalRow"
+                                                         value="0" readonly="true" />
+                    </div>
+                </div>
+
+            </div>
+            <div id="totalRowSuccess" class="totalRowSuccess">
+                <div>
+                    <div style="color:red; text-align:left">
+                        <label style="color:black"
+                                                       value="${c:l('pump.total.success')}" />
+                        <textbox class="textbox-total-succes"
+                                                         id="txtTotalRowSucces" value="0" readonly="true" />
+                    </div>
+                </div>
+            </div>
+            <div id="totalError" class="totalError">
+                <div>
+                    <div style="color:red; text-align:left">
+                        <label style="color:black"
+                                                       value="${c:l('pump.total.error')}" />
+                        <textbox class="textbox-total-errorr"
+                                                         id="txtTotalRowError" value="0" readonly="true" />
+                    </div>
+                </div>
+                <div>
+                    <button class="dowload-file-error"
+                                                forward="onClick=onDownloadFileError" visible="false"
+                                                id="errorList" hflex="4" label="${c:l('dowload.error.list')}" />
+
+                </div>
+            </div>
+
+            <div class="button-control">
+                <button mold="trendy" id="btnSave"
+                                        label="${c:l('pump.button.upload')}" tooltiptext=""
+                                        forward="form.onOK" focus="true" iconSclass="z-icon-upload" />
+                <button mold="trendy" id="btnCancel"
+                                        onClick="uploadStaff.detach();" iconSclass="z-icon-times"
+                                        label="${c:l('close')}" tooltiptext="" />
+            </div>
+        </groupbox>
+    </window>
+</zk>
